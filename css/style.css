@@ -1,0 +1,517 @@
+:root {
+    --bleu: #1a3a5c;
+    --bleu-clair: #2563a8;
+    --or: #c8972a;
+    --fond: #f5f3ee;
+    --blanc: #ffffff;
+    --gris: #6b7280;
+    --gris-clair: #e8e4dc;
+    --rouge: #c0392b;
+    --vert: #1a7a4a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--fond);
+    color: var(--bleu);
+    min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: var(--bleu);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid var(--or);
+}
+
+header .logo-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--or);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--blanc);
+    letter-spacing: -0.5px;
+}
+
+header h1 span {
+    color: var(--or);
+}
+
+header p {
+    margin-left: auto;
+    color: #aac4e8;
+    font-size: 0.85rem;
+}
+
+/* ===== LAYOUT GÉNÉRAL ===== */
+.page {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 0 16px;
+    align-items: start;
+}
+
+/* ===== BANDES PUB LATÉRALES ===== */
+.pub-lateral {
+    background: var(--blanc);
+    border: 2px dashed var(--gris-clair);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: sticky;
+    top: 24px;
+}
+
+.pub-lateral .pub-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gris);
+    background: var(--gris-clair);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.pub-lateral .pub-visuel {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #dce8f7 0%, #eef4fb 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--bleu-clair);
+    font-size: 0.8rem;
+}
+
+.pub-lateral .pub-visuel span {
+    font-size: 2rem;
+}
+
+.pub-lateral .pub-cta {
+    display: inline-block;
+    background: var(--bleu-clair);
+    color: var(--blanc);
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ===== COLONNE CENTRALE ===== */
+.centre {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ===== BLOC SIMULATEUR ===== */
+.bloc-simulateur {
+    background: var(--blanc);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(26, 58, 92, 0.1);
+    overflow: hidden;
+}
+
+.bloc-simulateur .bloc-header {
+    background: var(--bleu);
+    padding: 24px 28px;
+    border-bottom: 3px solid var(--or);
+}
+
+.bloc-simulateur .bloc-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--blanc);
+}
+
+.bloc-simulateur .bloc-header p {
+    color: #aac4e8;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.bloc-simulateur .bloc-corps {
+    padding: 28px;
+}
+
+/* Champs */
+.champ {
+    margin-bottom: 20px;
+}
+
+.champ label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--bleu);
+    margin-bottom: 6px;
+}
+
+.champ label span {
+    font-weight: 400;
+    color: var(--gris);
+    font-size: 0.8rem;
+    margin-left: 6px;
+}
+
+.champ input,
+.champ select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--gris-clair);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--bleu);
+    background: #fafaf8;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.champ input:focus,
+.champ select:focus {
+    border-color: var(--bleu-clair);
+    background: var(--blanc);
+}
+
+/* Toggle mensuel / annuel */
+.toggle-periode {
+    display: flex;
+    gap: 0;
+    border: 2px solid var(--gris-clair);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.toggle-periode button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #fafaf8;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gris);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toggle-periode button.actif {
+    background: var(--bleu);
+    color: var(--blanc);
+}
+
+/* Nb parts */
+.parts-input {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid var(--gris-clair);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.parts-input button {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: var(--gris-clair);
+    font-size: 1.3rem;
+    color: var(--bleu);
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.parts-input button:hover {
+    background: #d5d0c8;
+}
+
+.parts-input input {
+    border: none !important;
+    border-left: 2px solid var(--gris-clair) !important;
+    border-right: 2px solid var(--gris-clair) !important;
+    border-radius: 0 !important;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    background: #fafaf8 !important;
+}
+
+/* Bouton simuler */
+.btn-simuler {
+    width: 100%;
+    padding: 15px;
+    background: var(--or);
+    color: var(--blanc);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 8px;
+}
+
+.btn-simuler:hover {
+    background: #b07d1e;
+    transform: translateY(-1px);
+}
+
+.btn-simuler:active {
+    transform: translateY(0);
+}
+
+/* ===== BLOC RÉSULTATS ===== */
+.bloc-resultats {
+    background: var(--blanc);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(26, 58, 92, 0.1);
+    overflow: hidden;
+    display: none;
+    animation: apparait 0.4s ease;
+}
+
+@keyframes apparait {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bloc-resultats .bloc-header {
+    background: var(--vert);
+    padding: 20px 28px;
+}
+
+.bloc-resultats .bloc-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--blanc);
+}
+
+.bloc-resultats .bloc-corps {
+    padding: 28px;
+}
+
+/* Montant principal */
+.montant-principal {
+    text-align: center;
+    padding: 24px;
+    background: linear-gradient(135deg, #f0f7f2 0%, #e6f4ec 100%);
+    border-radius: 12px;
+    border: 2px solid #b8dfc8;
+    margin-bottom: 24px;
+}
+
+.montant-principal .label {
+    color: var(--gris);
+    font-size: 0.9rem;
+}
+
+.montant-principal .montant {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--vert);
+    font-weight: 700;
+    margin: 4px 0;
+}
+
+.montant-principal .sous-label {
+    color: var(--gris);
+    font-size: 0.8rem;
+}
+
+/* Lignes de détail */
+.detail-ligne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gris-clair);
+    font-size: 0.92rem;
+}
+
+.detail-ligne:last-of-type {
+    border-bottom: none;
+}
+
+.detail-ligne .libelle {
+    color: var(--bleu);
+}
+
+.detail-ligne .valeur {
+    font-weight: 600;
+    color: var(--bleu);
+}
+
+.detail-ligne .valeur.negatif {
+    color: var(--rouge);
+}
+
+.detail-ligne .valeur.positif {
+    color: var(--vert);
+}
+
+/* Taux effectif */
+.taux-barre {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 2px solid var(--gris-clair);
+}
+
+.taux-barre .taux-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.barre-fond {
+    height: 10px;
+    background: var(--gris-clair);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barre-rempli {
+    height: 100%;
+    background: linear-gradient(90deg, var(--vert), var(--or));
+    border-radius: 10px;
+    transition: width 0.8s ease;
+}
+
+/* Message don */
+.message-don {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #fff8e6 0%, #fef3cc 100%);
+    border-left: 4px solid var(--or);
+    border-radius: 0 10px 10px 0;
+    font-size: 0.88rem;
+    color: #6b4d00;
+    line-height: 1.5;
+}
+
+.message-don strong {
+    color: var(--bleu);
+}
+
+/* ===== PUB BAS ===== */
+.pub-bas {
+    background: var(--blanc);
+    border: 2px dashed var(--gris-clair);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    min-height: 110px;
+}
+
+.pub-bas .pub-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gris);
+    background: var(--gris-clair);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.pub-bas .pub-visuel-bas {
+    flex: 1;
+    height: 80px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--bleu-clair);
+    font-size: 0.85rem;
+}
+
+.pub-bas .pub-visuel-bas span {
+    font-size: 1.6rem;
+}
+
+.pub-bas .pub-cta-bas {
+    display: inline-block;
+    background: var(--bleu-clair);
+    color: var(--blanc);
+    font-size: 0.75rem;
+    padding: 7px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--gris);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--gris-clair);
+    margin-top: 16px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .page {
+        grid-template-columns: 1fr;
+    }
+
+    .pub-lateral {
+        display: none;
+    }
+
+    header p {
+        display: none;
+    }
+}
