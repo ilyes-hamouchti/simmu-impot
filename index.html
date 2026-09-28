@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simmu-Impôt — Simulez votre impôt en 30 secondes</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="img/chatgpt.png" type="icon">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-icon">🧾</div>
+        <h1>Simmu<span>-Impôt</span></h1>
+        <p>Simulation d'impôt sur le revenu — France 2024</p>
+    </header>
+
+    <!-- PAGE -->
+    <div class="page">
+
+        <!-- PUB GAUCHE -->
+        <aside class="pub-lateral">
+            <div class="pub-label">Publicité</div>
+            <div class="pub-visuel">
+                <span>🏦</span>
+                <strong>Votre banque en ligne</strong>
+                <p style="font-size:0.75rem;color:#5a7fa8">Ouvrez un compte sans frais</p>
+            </div>
+            <a href="#" class="pub-cta">En savoir plus</a>
+        </aside>
+
+        <!-- CENTRE -->
+        <main class="centre">
+
+            <!-- BLOC SIMULATEUR -->
+            <div class="bloc-simulateur">
+                <div class="bloc-header">
+                    <h2>Calculez votre impôt</h2>
+                    <p>Renseignez vos informations ci-dessous pour obtenir une estimation.</p>
+                </div>
+                <div class="bloc-corps">
+
+                    <!-- Toggle période -->
+                    <div class="champ">
+                        <label>Période de saisie du salaire</label>
+                        <div class="toggle-periode">
+                            <button id="btn-mensuel" class="actif" onclick="setPeriode('mensuel')">Mensuel</button>
+                            <button id="btn-annuel" onclick="setPeriode('annuel')">Annuel</button>
+                        </div>
+                    </div>
+
+                    <!-- Salaire -->
+                    <div class="champ">
+                        <label id="label-salaire">Salaire mensuel brut <span>(€)</span></label>
+                        <input type="number" id="salaire" placeholder="ex : 2 500" min="0" step="100" />
+                    </div>
+
+                    <!-- Nombre de parts -->
+                    <div class="champ">
+                        <label>Nombre de parts fiscales <span>(foyer)</span></label>
+                        <div class="parts-input">
+                            <button onclick="changerPart(-0.5)">−</button>
+                            <input type="number" id="parts" value="1" min="1" max="10" step="0.5" readonly />
+                            <button onclick="changerPart(0.5)">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Bouton -->
+                    <button class="btn-simuler" onclick="simuler()">
+                        ⟶ Calculer mon impôt
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- BLOC RÉSULTATS -->
+            <div class="bloc-resultats" id="resultats">
+                <div class="bloc-header">
+                    <h2>📊 Résultat de votre simulation</h2>
+                </div>
+                <div class="bloc-corps">
+
+                    <div class="montant-principal">
+                        <div class="label">Impôt estimé sur le revenu</div>
+                        <div class="montant" id="res-impot">—</div>
+                        <div class="sous-label">par an</div>
+                    </div>
+
+                    <div class="detail-ligne">
+                        <span class="libelle">Revenu brut annuel</span>
+                        <span class="valeur" id="res-brut">—</span>
+                    </div>
+                    <div class="detail-ligne">
+                        <span class="libelle">Abattement forfaitaire 10 %</span>
+                        <span class="valeur negatif" id="res-abattement">—</span>
+                    </div>
+                    <div class="detail-ligne">
+                        <span class="libelle">Revenu net imposable</span>
+                        <span class="valeur" id="res-net">—</span>
+                    </div>
+                    <div class="detail-ligne">
+                        <span class="libelle">Quotient familial (revenu / parts)</span>
+                        <span class="valeur" id="res-quotient">—</span>
+                    </div>
+                    <div class="detail-ligne">
+                        <span class="libelle">Impôt sur 1 part (barème progressif)</span>
+                        <span class="valeur" id="res-impot1part">—</span>
+                    </div>
+                    <div class="detail-ligne">
+                        <span class="libelle">Nombre de parts</span>
+                        <span class="valeur" id="res-parts">—</span>
+                    </div>
+                    <div class="detail-ligne">
+                        <span class="libelle">💰 <strong>Impôt total estimé</strong></span>
+                        <span class="valeur positif" id="res-total">—</span>
+                    </div>
+
+                    <!-- Barre taux effectif -->
+                    <div class="taux-barre">
+                        <div class="taux-label">
+                            <span>Taux d'imposition effectif</span>
+                            <span id="res-taux">— %</span>
+                        </div>
+                        <div class="barre-fond">
+                            <div class="barre-rempli" id="barre-taux" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Message dons -->
+                    <div class="message-don">
+                        💡 <strong>Bon à savoir :</strong> Vous pouvez réduire votre impôt grâce à vos dons à des
+                        associations reconnues d'utilité publique.Pour en savoir plus, contacté Sven au 07 66 15 50 36.
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PUB BAS -->
+            <div class="pub-bas">
+                <div class="pub-label">Publicité</div>
+                <div class="pub-visuel-bas">
+                    <span>📈</span>
+                    <div>
+                        <strong>Investissez malin</strong><br />
+                        <span style="font-size:0.78rem;color:#5a7fa8">PEA, Assurance-vie, SCPI</span>
+                    </div>
+                </div>
+                <a href="#" class="pub-cta-bas">Découvrir l'offre</a>
+            </div>
+
+        </main>
+
+        <!-- PUB DROITE -->
+        <aside class="pub-lateral">
+            <div class="pub-label">Publicité</div>
+            <div class="pub-visuel">
+                <span>🏠</span>
+                <strong>Défiscalisation</strong>
+                <p style="font-size:0.75rem;color:#5a7fa8">Réduisez vos impôts avec l'immobilier</p>
+            </div>
+            <a href="#" class="pub-cta">Je découvre</a>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        Simmu-Impôt — Simulation indicative basée sur le barème progressif de l'impôt sur le revenu français<br />
+        Cette simulation ne constitue pas un conseil fiscal. Consultez un professionnel pour votre situation
+        personnelle.
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
